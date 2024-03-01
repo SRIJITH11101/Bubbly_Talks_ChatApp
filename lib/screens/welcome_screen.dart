@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:bubblytalks/components/buttonwidget.dart';
 import 'package:bubblytalks/screens/login_screen.dart';
 import 'package:bubblytalks/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   static const colors = [
     Colors.blueGrey,
     Colors.lightBlueAccent,
-    Colors.purpleAccent
+    Colors.yellowAccent,
+    Colors.purpleAccent,
+    Colors.orangeAccent
   ];
 
   @override
@@ -25,7 +28,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     super.initState();
     controller =
         AnimationController(vsync: this, duration: Duration(seconds: 1));
-
     animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
     controller.forward();
     controller.addListener(() {
@@ -64,54 +66,24 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   isRepeatingAnimation: true,
                   //totalRepeatCount: 15,
                   repeatForever: true,
-                  //'BubblyTalks',
-                  // textStyle: TextStyle(
-                  //   fontSize: 40.0,
-                  //   fontWeight: FontWeight.w900,
-                  //   color: const Color.fromARGB(255, 84, 83, 83),
-                  // ),
                 ),
               ],
             ),
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegistrationScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                  ),
-                ),
-              ),
-            ),
+            ButtonWidget(
+                btname: 'Log in',
+                colour: Colors.lightBlueAccent,
+                onpressed: () {
+                  Navigator.pushNamed(context, LoginScreen.id);
+                }),
+            ButtonWidget(
+                btname: 'Register',
+                colour: Colors.blueAccent,
+                onpressed: () {
+                  Navigator.pushNamed(context, RegistrationScreen.id);
+                }),
           ],
         ),
       ),

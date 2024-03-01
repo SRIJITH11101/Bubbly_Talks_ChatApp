@@ -1,5 +1,7 @@
+import 'package:bubblytalks/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bubblytalks/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ChatScreen extends StatefulWidget {
   static String id = "chat_screen";
@@ -8,6 +10,28 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final _auth = FirebaseAuth.instance;
+  late User loggedinuser;
+
+  void getuser() {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        loggedinuser = user;
+        print(loggedinuser);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getuser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,9 +39,10 @@ class _ChatScreenState extends State<ChatScreen> {
         leading: null,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close),
+              icon: Icon(Icons.logout),
               onPressed: () {
-                //Implement logout functionality
+                _auth.signOut();
+                Navigator.popAndPushNamed(context, WelcomeScreen.id);
               }),
         ],
         title: Text('⚡️Chat'),

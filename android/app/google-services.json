@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "935575419283",
+    "project_id": "bubblytalks-75646",
+    "storage_bucket": "bubblytalks-75646.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935575419283:android:2c3b285dcc9c3f4b119066",
+        "android_client_info": {
+          "package_name": "com.example.bubblytalks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjSt-5jUhkVa26jWwqhbfzKIIFq-s9Qrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

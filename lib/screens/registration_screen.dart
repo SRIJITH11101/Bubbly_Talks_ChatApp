@@ -77,11 +77,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return LoadingAnimationWidget.discreteCircle(
-                            color: Colors.white,
-                            size: 50.0,
-                            secondRingColor: Colors.lightBlueAccent,
-                            thirdRingColor: Colors.blueAccent);
+                        return Center(
+                          child: LoadingAnimationWidget.discreteCircle(
+                              color: Colors.white,
+                              size: 50.0,
+                              secondRingColor: Colors.lightBlueAccent,
+                              thirdRingColor: Colors.blueAccent),
+                        );
                       });
                   try {
                     final User = await _auth.createUserWithEmailAndPassword(
@@ -89,7 +91,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     if (User != null) {
                       await User.user!.updateDisplayName(name);
                       Navigator.of(context).pop();
-                      Navigator.pushNamed(context, ChatScreen.id);
+                      Navigator.pushReplacementNamed(context, ChatScreen.id);
                     }
                   } catch (e) {
                     print(e);

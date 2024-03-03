@@ -18,8 +18,10 @@ class MsgStream extends StatelessWidget {
         stream: _firestore.collection('messages').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return CircularProgressIndicator(
-              backgroundColor: Colors.blue,
+            return Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.blue,
+              ),
             );
           }
           final msgs = snapshot.data!.docs.reversed;

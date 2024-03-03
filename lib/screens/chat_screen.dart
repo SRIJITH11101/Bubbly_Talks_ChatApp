@@ -53,6 +53,7 @@ class _ChatScreenState extends State<ChatScreen> {
       //backgroundColor: Colors.white,
       appBar: AppBar(
         leading: null,
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.logout),

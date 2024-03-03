@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         email: email, password: password);
                     if (User != null) {
                       Navigator.of(context).pop();
-                      Navigator.pushNamed(context, ChatScreen.id);
+                      Navigator.pushReplacementNamed(context, ChatScreen.id);
                     }
                   } catch (e) {
                     print(e);

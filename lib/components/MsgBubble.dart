@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+
+class msgbubble extends StatelessWidget {
+  final String text, sender;
+  final String? name;
+  final bool isMe;
+  const msgbubble(
+      {super.key,
+      required this.text,
+      required this.sender,
+      required this.name,
+      required this.isMe});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Text(name ?? "Anonomus"),
+          Material(
+              borderRadius: BorderRadius.only(
+                  topLeft: isMe ? Radius.circular(20) : Radius.circular(0),
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                  topRight: isMe ? Radius.circular(0) : Radius.circular(20)),
+              elevation: 5,
+              color: isMe ? Colors.lightBlueAccent : Colors.blueAccent,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                child: Text(text),
+              )),
+        ],
+      ),
+    );
+  }
+}

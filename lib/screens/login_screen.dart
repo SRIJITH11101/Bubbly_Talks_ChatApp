@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -63,8 +63,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return LoadingAnimationWidget.threeArchedCircle(
-                            color: Colors.white, size: 50.0);
+                        return Center(
+                          child: LoadingAnimationWidget.discreteCircle(
+                              color: Colors.white,
+                              size: 50.0,
+                              secondRingColor: Colors.lightBlueAccent,
+                              thirdRingColor: Colors.blueAccent),
+                        );
                       });
                   try {
                     final User = await _auth.signInWithEmailAndPassword(

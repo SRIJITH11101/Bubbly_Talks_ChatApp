@@ -15,11 +15,12 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _auth = FirebaseAuth.instance;
   String email = "";
+  String name = "";
   String password = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -35,6 +36,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             SizedBox(
               height: 48.0,
+            ),
+            TextField(
+              //keyboardType: TextInputType.emailAddress,
+              onChanged: (value) {
+                name = value;
+              },
+              decoration:
+                  kInputDecoration.copyWith(hintText: "Enter Your Name"),
+            ),
+            SizedBox(
+              height: 8.0,
             ),
             TextField(
               keyboardType: TextInputType.emailAddress,
@@ -65,13 +77,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return LoadingAnimationWidget.threeArchedCircle(
-                            color: Colors.white, size: 50.0);
+                        return LoadingAnimationWidget.discreteCircle(
+                            color: Colors.white,
+                            size: 50.0,
+                            secondRingColor: Colors.lightBlueAccent,
+                            thirdRingColor: Colors.blueAccent);
                       });
                   try {
                     final User = await _auth.createUserWithEmailAndPassword(
                         email: email, password: password);
                     if (User != null) {
+                      await User.user!.updateDisplayName(name);
                       Navigator.of(context).pop();
                       Navigator.pushNamed(context, ChatScreen.id);
                     }

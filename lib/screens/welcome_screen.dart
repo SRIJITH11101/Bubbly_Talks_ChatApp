@@ -38,7 +38,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -64,6 +64,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     )
                   ],
                   isRepeatingAnimation: true,
+                  pause: Duration(milliseconds: 500),
                   //totalRepeatCount: 15,
                   repeatForever: true,
                 ),

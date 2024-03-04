@@ -15,7 +15,10 @@ class MsgStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: _firestore.collection('messages').snapshots(),
+        stream: _firestore
+            .collection('messages')
+            .orderBy('timestamp', descending: true)
+            .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -24,19 +27,21 @@ class MsgStream extends StatelessWidget {
               ),
             );
           }
-          final msgs = snapshot.data!.docs.reversed;
+          final msgs = snapshot.data!.docs;
           List<msgbubble> msgwidgets = [];
           for (var msg in msgs) {
             final msgtext = msg.get('text');
             final msgsender = msg.get('user');
             final msgname = msg.get('name');
+            final time = msg.get('timestamp');
             final currentuser = user.email;
 
             final msgwidget = msgbubble(
                 text: msgtext,
                 sender: msgsender,
                 name: msgname,
-                isMe: msgsender == currentuser);
+                isMe: msgsender == currentuser,
+                time: time);
             msgwidgets.add(msgwidget);
           }
           return Expanded(

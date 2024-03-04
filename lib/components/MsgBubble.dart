@@ -1,18 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class msgbubble extends StatelessWidget {
   final String text, sender;
   final String? name;
   final bool isMe;
+  final Timestamp time;
+
   const msgbubble(
       {super.key,
       required this.text,
       required this.sender,
       required this.name,
-      required this.isMe});
+      required this.isMe,
+      required this.time});
 
   @override
   Widget build(BuildContext context) {
+    DateTime dateTime = time.toDate();
+    String times = DateFormat.Hm().format(dateTime);
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Column(
@@ -32,6 +39,10 @@ class msgbubble extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 child: Text(text),
               )),
+          Text(
+            times,
+            style: TextStyle(fontSize: 10),
+          ),
         ],
       ),
     );

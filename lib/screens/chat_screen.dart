@@ -63,7 +63,10 @@ class _ChatScreenState extends State<ChatScreen> {
                 //msgstream();
               }),
         ],
-        title: Text('⚡️Chat'),
+        title: Text(
+          '💬 BubblyTalks',
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
         backgroundColor: Colors.blue,
       ),
       body: SafeArea(
@@ -93,7 +96,8 @@ class _ChatScreenState extends State<ChatScreen> {
                       _firestore.collection('messages').add({
                         'text': message,
                         'user': loggedinuser.email,
-                        'name': loggedinuser.displayName
+                        'name': loggedinuser.displayName,
+                        'timestamp': Timestamp.now(),
                       });
                     },
                     child: Text(

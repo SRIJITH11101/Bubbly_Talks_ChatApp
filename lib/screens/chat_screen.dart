@@ -8,7 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ChatScreen extends StatefulWidget {
   static String id = "chat_screen";
   //final _auth = FirebaseAuth.instance;
-  late User loggedinuser;
+  late final User loggedinuser;
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -82,6 +82,8 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
                       controller: msgcontroller,
                       onChanged: (value) {
                         message = value;
